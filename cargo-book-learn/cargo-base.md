@@ -1,6 +1,6 @@
 <!--
  * @Date: 2020-09-27 12:52:56
- * @LastEditTime: 2020-09-27 13:03:40
+ * @LastEditTime: 2020-09-27 16:36:57
 -->
 
 # Introduction
@@ -27,10 +27,15 @@ edition = "2018"
 > This is called a manifest, and it contains all of the metadata that Cargo needs to compile your package.
 
 - compile project: `cargo build`
+
+> Compiling hello_world v0.1.0 (file:///path/to/package/hello_world)
+
 - run compiled project: `./target/debug/project-name`
 - compile and run project: `cargo run`
 
-> ps: you must cd to your project-name dir, or raise a error error: could not find Cargo.toml in `xx/xx/xx` or any parent directory
+> ps: you must cd to your project-name dir, or raise a error: could not find Cargo.toml in `xx/xx/xx` or any parent directory
+
+> You won't see the Compiling line if you have not made any changes since you last compiled
 
 Why Cargo Exists
 
