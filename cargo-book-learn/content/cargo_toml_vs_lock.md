@@ -1,6 +1,6 @@
 <!--
  * @Date: 2020-09-27 17:16:24
- * @LastEditTime: 2020-09-27 17:44:07
+ * @LastEditTime: 2020-09-27 18:08:42
 -->
 
 # Cargo.toml vs Cargo.lock
@@ -77,3 +77,35 @@ When we’re ready to opt in to a new version of the library, Cargo can re-calcu
 ```
 
 This will write out a new Cargo.lock with the new version information. Note that the argument to cargo update is actually a Package ID Specification and rand is just a short specification.
+
+## 小结
+
+### 直观区别
+
+- toml是你写的依赖，取决于你。
+- lock，取决于cargo，它会自动拉取依赖的依赖，程序员不能手动修改。
+
+#### 潜在问题
+
+如果我们dependencies指定了一个git仓库，而又没有其他信息，那么cargo构建的时候，会默认使用这个git master分支最后一次提交。
+这会有潜在的问题，比如你构建了一次项目，我第二天构建项目，但是中间这个依赖的git又有几次提交，那这样，你我构建的项目肯定是不一样的。
+
+也可通过在git后加上rev的号来指定是哪一个位置的构建，那这会引入另一个问题，每次更新我们都要制定这个号，比较繁琐麻烦。
+
+#### lock出现
+
+lock解决了不一致的问题，每一次构建的时候，lock会记录额外的信息，所以如果这时候你给别人包的时候，如果有lock文件，那么我们构建的肯定是一样的，因为lock自动记录了额外的版本信息，即使我们不在toml中声明也可以。
+
+#### 更新
+
+当依赖的库需要更新，我们使用命令来完成，而且cargo会重新计算那些额外信息生成新的lock文件，更新全部的和特定的依赖都支持。
+
+``` bash
+cargo update           # updates all dependencies
+cargo update -p rand   # updates just “rand”
+```
+
+#### 其他
+
+如果你构建的不是最终产品，那么可以把lock文件加入.gitignore, 这时候你的其他依赖都是不确定的，所以无需上传lock。
+如果你构建的是最终产品，那么可以把lock放入仓库，因为这时候你的产品是完整的，依赖是确定的。
