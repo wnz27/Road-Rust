@@ -1,8 +1,3 @@
-<!--
- * @Date: 2020-09-27 10:44:21
- * @LastEditTime: 2020-09-28 17:44:35
--->
-
 # Road-Rust
 
 > learn rust note
