@@ -1,0 +1,6 @@
+[book]
+authors = ["wnz27"]
+language = "en"
+multilingual = false
+src = "src"
+title = "rust-by-practice"
