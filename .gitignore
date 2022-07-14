@@ -190,5 +190,10 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 
+# other
+node_modules
+package-lock.json
+package.json
+
 # End of https://www.toptal.com/developers/gitignore/api/python,lua
 n
